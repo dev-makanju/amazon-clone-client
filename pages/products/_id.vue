@@ -206,7 +206,7 @@
                   <div class="clearfix">
                     <div class="float-left">
                       <form>
-                        <input type="radio" id="test1" name="radio-group checked" />
+                        <input id="test1" type="radio"  name="radio-group checked" />
                         <label for="test1">Buy Now</label>
                       </form>
                     </div>
@@ -291,7 +291,7 @@
                   <div class="clearfix">
                     <div class="float-left">
                       <form>
-                        <input type="radio" id="test2" name="radio-group" />
+                        <input id="test2" type="radio" name="radio-group" />
                         <label for="test1">Buy Now</label>
                       </form>
                     </div>
@@ -335,7 +335,7 @@
                 <div class="col-md-10 col-sm-8 col-8 pl-0">
                   <div class="mainContent">
                     <h3>Biography</h3>
-                    <div id="authorBio">{{ product.owner.about }}</div>
+                    <div id="authorBio">{{ product.owner.about}}</div>
                   </div>
                 </div>
               </div>
@@ -358,7 +358,7 @@ export default{
            product:response.product
         }
         } catch (err){
-            console.log(err)
+            //
         }
     }
 }
