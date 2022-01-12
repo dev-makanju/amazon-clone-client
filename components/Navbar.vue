@@ -73,13 +73,25 @@
                         </a>
 
                         <span class="icp-nav-link-border"></span>
-                        <nuxt-link id="nav-link-accountList" to="/register" class="nav-a nav-a-2" tabindex="0">
-                             <span class="nav-line-1">Hello, Sign in</span>
-                             <span class="nav-line-2">
-                                 Account &nbsp; Lists
+                        <template v-if="$auth.$state.loggedIn">
+                            <nuxt-link id="nav-link-accountList" to="/register" class="nav-a nav-a-2" tabindex="0">
+                                <span class="nav-line-1">Hello</span>
+                                <span class="nav-line-2">
+                                    {{ $auth.state.user.name }}
+                                </span>
+                                <a href="#" @click="onDelete">delete</a>
+                            </nuxt-link>
+                        </template>
+                        <template v-else>
+                            <nuxt-link id="nav-link-accountList" to="/register" class="nav-a nav-a-2" tabindex="0">
+                                <span class="nav-line-1">Hello</span>
+                                <span class="nav-line-2">
+                                    Account &nbsp; List
                                  <span class="nav-icon nav-arrow" style="visibility: visible"></span>
-                             </span>
-                        </nuxt-link>
+                                </span>
+                            </nuxt-link>
+                        </template>
+                        
                         <nuxt-link id="nav-cart" to="/cart" class="nav-a nav-a-2">
                             <span aria-hidden="true" class="nav-line-1"></span>
                             <span aria-hidden="true" class="nav-line-2"></span>
@@ -100,6 +112,11 @@
        name:'AppNavbar',
        component:{
            Search
+       },
+       methods:{
+           onDelete(){
+               this.$auth.logout()
+           }
        }
    }
 </script>

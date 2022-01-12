@@ -8,7 +8,6 @@
                   </div>
                   <!---main content-->
                   <div class="col-xl-10 c0l-lg-0 md-8 col-sm-8">
-                      <featuredProduct/>
 
                       <div class="mainResults">
                            <ul class="s-result-list">
@@ -126,7 +125,7 @@
 
 <script>
 export default {
-  name: 'NuxtTutorial',
-  props:[ "products"]
+  name: 'SearchBar',
+
 }
 </script>

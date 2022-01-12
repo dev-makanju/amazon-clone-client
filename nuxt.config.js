@@ -24,7 +24,11 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    {
+      src: '~/plugins/star-rating.js', mode: 'client'
+    },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -40,7 +44,7 @@ export default {
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     "@nuxtjs/axios",
-    "@nuxtjs/auth",
+    '@nuxtjs/auth-next'
   ],
 
   /*
@@ -48,7 +52,7 @@ export default {
   */
  axios: {
     proxy: true,
-    baseURL: URL
+    baseURL: URL,
  },
 
  proxy:{
@@ -56,18 +60,22 @@ export default {
  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
-  auth:{
+ build: {},
+ auth:{
     strategies:{
         local:{
+            token:{
+               property:'token',
+               global: true,
+               name:'Authorisation'
+            },
             endpoints:{
                login:{
-                  properyName: "token"
+                  propertyName:"token"
                },
-                logout: true 
+               logout: true 
             }
         }
     }
   }
-
-}
+};
