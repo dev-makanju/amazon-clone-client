@@ -3,23 +3,21 @@ export const state = () => ({
        cartLength:0
 });
 
+export const actions =  {
+    addProductToCart({ state , commit} , product ){
+        const cartProduct = state.cart.find(prod => prod._id === product._id);
 
-export const actions = () => ({
-     addProductToCart({ state , commit} , product ){
-         const cartProduct = state.cart.find(prod => prod._id === product._id);
+        if(!cartProduct){
+           commit("pushProductToCart" , product )
+        }else{
+            commit("incrementProductQuantity" , cartProduct )
+        }
 
-         if(cartProduct){
-            commit("pushProductToCart" , product )
-         }else{
-             commit("incrementProductQuantity" , product)
-         }
+        commit("incrementCartLenght")
+    }
+};
 
-         commit("incrementCartLenght")
-     }
-});
-
-
-export const mutations = () => ({
+export const mutations = {
     pushProductToCart(state , product){
         product.quantity = 1;
         state.cart.push(product);
@@ -32,10 +30,16 @@ export const mutations = () => ({
     incrementCartLenght(state){
         state.cartLength = 0;
         if(state.cart.length > 0){
-            state.cart.map(product => {
+            state.cart.forEach( product => {
                 state.cartLength += product.quantity
-            })
+            });
         }
     }
+};
 
-});
+
+export const getters = {
+     getCartLenght(state){
+         return state.CartLenght
+     }
+}
